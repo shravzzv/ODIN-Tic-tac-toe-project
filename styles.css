@@ -49,16 +49,16 @@ body {
 }
 
 .tile:first-of-type {
-  border-top-left-radius: 0.25em;
+  border-top-left-radius: calc(1em / 3);
 }
 .tile:nth-of-type(3) {
-  border-top-right-radius: 0.25em;
+  border-top-right-radius: calc(1em / 3);
 }
 .tile:nth-of-type(7) {
-  border-bottom-left-radius: 0.25em;
+  border-bottom-left-radius: calc(1em / 3);
 }
 .tile:last-of-type {
-  border-bottom-right-radius: 0.25em;
+  border-bottom-right-radius: calc(1em / 3);
 }
 
 @media (prefers-color-scheme: dark) {
