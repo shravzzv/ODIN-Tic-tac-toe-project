@@ -13,6 +13,52 @@ body {
   margin: 0;
   color: var(--txt-clr-prm);
   background-color: var(--bg-clr-prm);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 1em;
+}
+
+.tile {
+  border: 1px solid #000;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.tile:focus,
+.tile:hover {
+  color: blue;
+  border-color: blue;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.tile:first-of-type {
+  border-top-left-radius: 0.25em;
+}
+.tile:nth-of-type(3) {
+  border-top-right-radius: 0.25em;
+}
+.tile:nth-of-type(7) {
+  border-bottom-left-radius: 0.25em;
+}
+.tile:last-of-type {
+  border-bottom-right-radius: 0.25em;
 }
 
 @media (prefers-color-scheme: dark) {
