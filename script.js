@@ -1,3 +1,6 @@
+const gameBoardEl = document.querySelector('.gameBoard')
+const tileEls = document.querySelectorAll('.tile')
+
 // module
 const Gameboard = (function GameBoard() {
   const board = []
@@ -19,6 +22,14 @@ const Player = (name, choice) => {
 const player1 = Player('jeff', 'X')
 const player2 = Player('samantha', 'O')
 
-player1.makeMove()
-player2.makeMove()
-console.log(Gameboard)
+let invertTurn = false
+
+const handleTileClick = (e) => {
+  invertTurn ? player2.makeMove() : player1.makeMove()
+  e.target.textContent = Gameboard.board[Gameboard.board.length - 1]
+  invertTurn = !invertTurn
+}
+
+Array.from(tileEls).forEach((tile) =>
+  tile.addEventListener('click', handleTileClick)
+)
