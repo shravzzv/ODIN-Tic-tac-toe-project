@@ -25,6 +25,7 @@ const player2 = Player('samantha', 'O')
 let invertTurn = false
 
 const handleTileClick = (e) => {
+  if (e.target.textContent !== '') return
   invertTurn ? player2.makeMove() : player1.makeMove()
   e.target.textContent = Gameboard.board[Gameboard.board.length - 1]
   invertTurn = !invertTurn
