@@ -1,8 +1,18 @@
 // module
 const game = (function () {
-  const start = () => gameboard.activateBoard()
-  const end = () => gameboard.deactivateBoard()
-  return { start, end }
+  const startEl = document.querySelector('.start-game')
+  const pauseEl = document.querySelector('.pause-game')
+  const resetEl = document.querySelector('.reset-game')
+
+  const start = () => gameboard.activate()
+  const end = () => gameboard.deactivate()
+  const reset = () => gameboard.reset()
+
+  startEl.addEventListener('click', start)
+  pauseEl.addEventListener('click', end)
+  resetEl.addEventListener('click', reset)
+
+  return {}
 })()
 
 // module
@@ -56,6 +66,7 @@ const gameboard = (function GameBoard() {
   const reset = () => {
     _board.splice(0, 9, '', '', '', '', '', '', '', '', '')
     populate()
+    _invertTurn = false
   }
 
   return {

@@ -5,6 +5,7 @@
 :root {
   --txt-clr-prm: black;
   --bg-clr-prm: white;
+  --bg-clr-sec: rgb(245, 245, 245);
 }
 
 body {
@@ -12,9 +13,10 @@ body {
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
   color: var(--txt-clr-prm);
-  background-color: var(--bg-clr-prm);
+  background-color: var(--bg-clr-sec);
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -23,6 +25,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  background-color: var(--bg-clr-prm);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -61,9 +64,35 @@ body {
   border-bottom-right-radius: calc(1em / 3);
 }
 
+.controls {
+  margin: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.controls > button {
+  border-radius: 1.5em;
+  padding: 1em;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
+}
+
+.start-game {
+  background-color: rgb(86, 219, 86);
+}
+
+.pause-game {
+  background-color: rgb(245, 245, 69);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --txt-clr-prm: white;
     --bg-clr-prm: #181a1b;
+    --bg-clr-sec: #010409;
   }
 }
