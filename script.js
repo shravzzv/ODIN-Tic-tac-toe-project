@@ -1,24 +1,6 @@
 // module
 const game = (function () {
-  const _tileElsArr = Array.from(document.querySelectorAll('.tile'))
-
-  const start = () => {
-    gameboard.populateBoard(_tileElsArr)
-    let _invertTurn = false
-
-    const _handleTileClick = (e) => {
-      if (e.currentTarget.textContent !== '') return
-      _invertTurn
-        ? player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
-        : player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
-      gameboard.populateBoard(_tileElsArr)
-      _invertTurn = !_invertTurn
-    }
-
-    _tileElsArr.forEach((tile) =>
-      tile.addEventListener('click', _handleTileClick)
-    )
-  }
+  const start = () => gameboard.activateBoard()
 
   const end = () => {
     const result = gameboard.checkEndGame()
@@ -35,6 +17,7 @@ const game = (function () {
 
 // module
 const gameboard = (function GameBoard() {
+  const _tileElsArr = Array.from(document.querySelectorAll('.tile'))
   const _board = ['', '', '', '', '', '', '', '', '']
   const _winningCombinations = [
     // rows
@@ -49,6 +32,31 @@ const gameboard = (function GameBoard() {
     [0, 4, 8],
     [2, 4, 6],
   ]
+  let _invertTurn = false
+
+  const activateBoard = () => {
+    const _handleTileClick = (e) => {
+      if (e.currentTarget.textContent !== '') return
+      _invertTurn
+        ? player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
+        : player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
+      gameboard.populateBoard(_tileElsArr)
+      _invertTurn = !_invertTurn
+    }
+
+    _tileElsArr.forEach((tile) =>
+      tile.addEventListener('click', _handleTileClick)
+    )
+  }
+
+  const populateBoard = () => {
+    _tileElsArr.forEach((tile, i) => (tile.textContent = _board[i]))
+  }
+
+  const updateBoard = (move, index) => {
+    _board.splice(index, 1, move)
+    console.log(_board)
+  }
 
   const checkEndGame = () => {
     for (const combination of _winningCombinations) {
@@ -59,18 +67,7 @@ const gameboard = (function GameBoard() {
     }
   }
 
-  const populateBoard = (tiles) => {
-    tiles.forEach((tile, i) => (tile.textContent = _board[i]))
-  }
-
-  const updateBoard = (move, index) => {
-    _board.splice(index, 1, move)
-    console.log(_board)
-  }
-
-  const getItem = (index) => _board[index]
-
-  return { updateBoard, checkEndGame, populateBoard, getItem }
+  return { updateBoard, checkEndGame, populateBoard, activateBoard }
 })()
 
 // factory
