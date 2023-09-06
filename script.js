@@ -1,19 +1,19 @@
 // module
 const game = (function () {
-  const tileEls = document.querySelectorAll('.tile')
+  const _tileEls = document.querySelectorAll('.tile')
 
   const start = () => {
-    let invertTurn = false
+    let _invertTurn = false
 
-    const handleTileClick = (e) => {
+    const _handleTileClick = (e) => {
       if (e.target.textContent !== '') return
-      invertTurn ? player2.makeMove() : player1.makeMove()
+      _invertTurn ? player2.makeMove() : player1.makeMove()
       e.target.textContent = gameboard.getLastMove()
-      invertTurn = !invertTurn
+      _invertTurn = !_invertTurn
     }
 
-    Array.from(tileEls).forEach((tile) =>
-      tile.addEventListener('click', handleTileClick)
+    Array.from(_tileEls).forEach((tile) =>
+      tile.addEventListener('click', _handleTileClick)
     )
   }
 
@@ -24,10 +24,10 @@ const game = (function () {
 
 // module
 const gameboard = (function GameBoard() {
-  const board = []
-  const addMove = (move) => board.push(move)
-  const getBoardLength = () => board.length
-  const getLastMove = () => board[getBoardLength() - 1]
+  const _board = []
+  const addMove = (move) => _board.push(move)
+  const getBoardLength = () => _board.length
+  const getLastMove = () => _board[getBoardLength() - 1]
   return { addMove, getBoardLength, getLastMove }
 })()
 
