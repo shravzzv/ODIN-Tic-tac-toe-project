@@ -32,32 +32,38 @@ const gameboard = (function GameBoard() {
     _invertTurn = !_invertTurn
   }
 
-  const activateBoard = () => {
+  const activate = () => {
     _tileElsArr.forEach((tile) =>
       tile.addEventListener('click', _handleTileClick)
     )
   }
 
-  const deactivateBoard = () => {
+  const deactivate = () => {
     _tileElsArr.forEach((tile) => {
       tile.removeEventListener('click', _handleTileClick)
     })
   }
 
-  const populateBoard = () => {
+  const populate = () => {
     _tileElsArr.forEach((tile, i) => (tile.textContent = _board[i]))
   }
 
-  const updateBoard = (move, index) => {
+  const update = (move, index) => {
     _board.splice(index, 1, move)
-    populateBoard()
+    populate()
+  }
+
+  const reset = () => {
+    _board.splice(0, 9, '', '', '', '', '', '', '', '', '')
+    populate()
   }
 
   return {
-    updateBoard,
-    populateBoard,
-    activateBoard,
-    deactivateBoard,
+    update,
+    populate,
+    activate,
+    deactivate,
+    reset,
   }
 })()
 
@@ -66,12 +72,10 @@ const Player = (name, choice) => {
   const getName = () => name
   const getChoice = () => choice
   const makeMove = (index) => {
-    gameboard.updateBoard(choice, index)
+    gameboard.update(choice, index)
   }
   return { getName, getChoice, makeMove }
 }
 
 const player1 = Player('jeff', 'X')
 const player2 = Player('samantha', 'O')
-
-game.start()
