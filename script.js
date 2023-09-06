@@ -1,17 +1,7 @@
 // module
 const game = (function () {
   const start = () => gameboard.activateBoard()
-
-  const end = () => {
-    const result = gameboard.checkEndGame()
-    if (result === 'X' || result === 'O') {
-      // Display a message for the winner
-    } else if (result === 'draw') {
-      // Display a message for a draw
-    }
-    // Remove event listeners here if the game is over
-  }
-
+  const end = () => gameboard.deactivateBoard()
   return { start, end }
 })()
 
@@ -19,6 +9,7 @@ const game = (function () {
 const gameboard = (function GameBoard() {
   const _tileElsArr = Array.from(document.querySelectorAll('.tile'))
   const _board = ['', '', '', '', '', '', '', '', '']
+  let _invertTurn = false
   const _winningCombinations = [
     // rows
     [0, 1, 2],
@@ -32,21 +23,25 @@ const gameboard = (function GameBoard() {
     [0, 4, 8],
     [2, 4, 6],
   ]
-  let _invertTurn = false
+
+  const _handleTileClick = (e) => {
+    if (e.currentTarget.textContent !== '') return
+    _invertTurn
+      ? player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
+      : player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
+    _invertTurn = !_invertTurn
+  }
 
   const activateBoard = () => {
-    const _handleTileClick = (e) => {
-      if (e.currentTarget.textContent !== '') return
-      _invertTurn
-        ? player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
-        : player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
-      gameboard.populateBoard(_tileElsArr)
-      _invertTurn = !_invertTurn
-    }
-
     _tileElsArr.forEach((tile) =>
       tile.addEventListener('click', _handleTileClick)
     )
+  }
+
+  const deactivateBoard = () => {
+    _tileElsArr.forEach((tile) => {
+      tile.removeEventListener('click', _handleTileClick)
+    })
   }
 
   const populateBoard = () => {
@@ -55,19 +50,15 @@ const gameboard = (function GameBoard() {
 
   const updateBoard = (move, index) => {
     _board.splice(index, 1, move)
-    console.log(_board)
+    populateBoard()
   }
 
-  const checkEndGame = () => {
-    for (const combination of _winningCombinations) {
-      let [a, b, c] = combination
-      if (_board[a] === 'X' && _board[b] === 'X' && _board[c] === 'X') {
-        console.log('X is the winner')
-      }
-    }
+  return {
+    updateBoard,
+    populateBoard,
+    activateBoard,
+    deactivateBoard,
   }
-
-  return { updateBoard, checkEndGame, populateBoard, activateBoard }
 })()
 
 // factory
