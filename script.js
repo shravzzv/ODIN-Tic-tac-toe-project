@@ -1,5 +1,8 @@
 // module
 const game = (function () {
+  const restarEl = document.querySelector('.restart')
+  restarEl.addEventListener('click', (e) => replay())
+
   const start = () => gameboard.activate()
   const end = () => gameboard.deactivate()
   const replay = () => {
