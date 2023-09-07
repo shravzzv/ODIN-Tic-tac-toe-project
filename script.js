@@ -8,10 +8,9 @@ const game = (function () {
 
   const start = () => gameboard.activate()
   const end = () => gameboard.deactivate()
-  const reset = () => gameboard.reset()
   const replay = () => {
     if (window.confirm('Replay')) {
-      reset()
+      gameboard.reset()
       start()
     }
   }
@@ -20,7 +19,7 @@ const game = (function () {
   // pauseEl.addEventListener('click', end)
   // resetEl.addEventListener('click', reset)
 
-  return { start, end, reset, replay }
+  return { start, end, replay }
 })()
 
 // module
@@ -48,7 +47,7 @@ const gameboard = (function GameBoard() {
       ? player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
       : player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
     _invertTurn = !_invertTurn
-    checkResult()
+    _checkResult()
   }
 
   const activate = () => {
@@ -63,33 +62,35 @@ const gameboard = (function GameBoard() {
     })
   }
 
-  const populate = () => {
+  const _populate = () => {
     _tileElsArr.forEach((tile, i) => (tile.textContent = _board[i]))
   }
 
   const update = (choice, index) => {
     _board.splice(index, 1, choice)
-    populate()
+    _populate()
   }
 
   const reset = () => {
     _board.splice(0, 9, '', '', '', '', '', '', '', '', '')
-    populate()
+    _populate()
     _invertTurn = false
   }
 
-  const checkResult = () => {
+  const _checkResult = () => {
     for (const combination of _winningCombinations) {
       const [a, b, c] = combination
       if (_board[a] === 'X' && _board[b] === 'X' && _board[c] === 'X') {
         console.log('X won!')
         game.end()
         game.replay()
+        return
       }
       if (_board[a] === 'O' && _board[b] === 'O' && _board[c] === 'O') {
         console.log('O won!')
         game.end()
         game.replay()
+        return
       }
     }
 
@@ -102,11 +103,9 @@ const gameboard = (function GameBoard() {
 
   return {
     update,
-    populate,
     activate,
     deactivate,
     reset,
-    checkResult,
   }
 })()
 
