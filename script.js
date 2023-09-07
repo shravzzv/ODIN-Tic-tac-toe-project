@@ -17,7 +17,10 @@ const game = (function () {
 const gameboard = (function GameBoard() {
   const _tileElsArr = Array.from(document.querySelectorAll('.tile'))
   const _player = document.querySelector('.player')
+  const _result = document.querySelector('.result')
+  const _turn = document.querySelector('.turn')
   _player.textContent = '❌'
+  _result.style.display = 'none'
   const _board = ['', '', '', '', '', '', '', '', '']
   let _invertTurn = false
   const _winningCombinations = [
@@ -73,6 +76,8 @@ const gameboard = (function GameBoard() {
     _populate()
     _invertTurn = false
     _player.textContent = '❌'
+    _result.style.display = 'none'
+    _turn.style.display = 'block'
   }
 
   const _checkResult = () => {
@@ -80,25 +85,31 @@ const gameboard = (function GameBoard() {
       const [a, b, c] = combination
       if (_board[a] === '❌' && _board[b] === '❌' && _board[c] === '❌') {
         setTimeout(() => {
-          alert('X won!')
           game.end()
         }, 100)
+        _turn.style.display = 'none'
+        _result.style.display = 'block'
+        _result.textContent = '❌ won!'
         return
       }
       if (_board[a] === '⭕' && _board[b] === '⭕' && _board[c] === '⭕') {
         setTimeout(() => {
-          alert('O won!')
           game.end()
         }, 100)
+        _turn.style.display = 'none'
+        _result.style.display = 'block'
+        _result.textContent = '⭕ won!'
         return
       }
     }
 
     if (!_board.includes('')) {
       setTimeout(() => {
-        alert("It's a draw")
         game.end()
       }, 100)
+      _turn.style.display = 'none'
+      _result.style.display = 'block'
+      _result.textContent = '⭕❌ Draw! ⭕❌'
     }
   }
 
