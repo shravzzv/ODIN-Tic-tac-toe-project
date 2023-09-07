@@ -3,8 +3,13 @@ const game = (function () {
   const startEl = document.querySelector('.start-game')
   const pauseEl = document.querySelector('.pause-game')
   const resetEl = document.querySelector('.reset-game')
+  const form = document.querySelector('form')
+  form.addEventListener('submit', (e) => e.preventDefault())
 
-  const start = () => gameboard.activate()
+  const start = () => {
+    gameboard.activate()
+    gameboard.checkResult()
+  }
   const end = () => gameboard.deactivate()
   const reset = () => gameboard.reset()
 
@@ -69,12 +74,27 @@ const gameboard = (function GameBoard() {
     _invertTurn = false
   }
 
+  const checkResult = () => {
+    for (const combination of _winningCombinations) {
+      const [a, b, c] = combination
+      if (
+        _board[a] === _board[b] &&
+        _board[a] === _board[c] &&
+        _board[b] === _board[c] &&
+        !_board.includes('')
+      ) {
+        console.log('check win')
+      }
+    }
+  }
+
   return {
     update,
     populate,
     activate,
     deactivate,
     reset,
+    checkResult,
   }
 })()
 
