@@ -64,6 +64,20 @@ body {
   border-bottom-right-radius: calc(1em / 3);
 }
 
+.restart {
+  margin-top: 1em;
+  border-radius: 1em;
+  border: 1px solid black;
+  font-size: 2rem;
+  padding: 0.25em 1em;
+  cursor: pointer;
+}
+
+.restart:focus,
+.restart:hover {
+  border-color: blue;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --txt-clr-prm: white;

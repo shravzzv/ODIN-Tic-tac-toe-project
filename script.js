@@ -1,12 +1,13 @@
 // module
 const game = (function () {
+  const restarEl = document.querySelector('.restart')
+  restarEl.addEventListener('click', (e) => replay())
+
   const start = () => gameboard.activate()
   const end = () => gameboard.deactivate()
   const replay = () => {
-    if (window.confirm('Replay')) {
-      gameboard.reset()
-      start()
-    }
+    gameboard.reset()
+    start()
   }
 
   return { start, end, replay }
@@ -15,6 +16,11 @@ const game = (function () {
 // module
 const gameboard = (function GameBoard() {
   const _tileElsArr = Array.from(document.querySelectorAll('.tile'))
+  const _player = document.querySelector('.player')
+  const _result = document.querySelector('.result')
+  const _turn = document.querySelector('.turn')
+  _player.textContent = '❌'
+  _result.style.display = 'none'
   const _board = ['', '', '', '', '', '', '', '', '']
   let _invertTurn = false
   const _winningCombinations = [
@@ -33,9 +39,13 @@ const gameboard = (function GameBoard() {
 
   const _handleTileClick = (e) => {
     if (e.currentTarget.textContent !== '') return
-    _invertTurn
-      ? player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
-      : player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
+    if (_invertTurn) {
+      player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
+      _player.textContent = '❌'
+    } else {
+      player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
+      _player.textContent = '⭕'
+    }
     _invertTurn = !_invertTurn
     _checkResult()
   }
@@ -65,35 +75,41 @@ const gameboard = (function GameBoard() {
     _board.splice(0, 9, '', '', '', '', '', '', '', '', '')
     _populate()
     _invertTurn = false
+    _player.textContent = '❌'
+    _result.style.display = 'none'
+    _turn.style.display = 'block'
   }
 
   const _checkResult = () => {
     for (const combination of _winningCombinations) {
       const [a, b, c] = combination
-      if (_board[a] === 'X' && _board[b] === 'X' && _board[c] === 'X') {
+      if (_board[a] === '❌' && _board[b] === '❌' && _board[c] === '❌') {
         setTimeout(() => {
-          alert('X won!')
           game.end()
-          game.replay()
         }, 100)
+        _turn.style.display = 'none'
+        _result.style.display = 'block'
+        _result.textContent = '❌ won!'
         return
       }
-      if (_board[a] === 'O' && _board[b] === 'O' && _board[c] === 'O') {
+      if (_board[a] === '⭕' && _board[b] === '⭕' && _board[c] === '⭕') {
         setTimeout(() => {
-          alert('O won!')
           game.end()
-          game.replay()
         }, 100)
+        _turn.style.display = 'none'
+        _result.style.display = 'block'
+        _result.textContent = '⭕ won!'
         return
       }
     }
 
     if (!_board.includes('')) {
       setTimeout(() => {
-        alert("It's a draw")
         game.end()
-        game.replay()
       }, 100)
+      _turn.style.display = 'none'
+      _result.style.display = 'block'
+      _result.textContent = '⭕❌ Draw! ⭕❌'
     }
   }
 
@@ -115,7 +131,7 @@ const Player = (name, choice) => {
   return { getName, getChoice, makeMove }
 }
 
-const player1 = Player('jeff', 'X')
-const player2 = Player('samantha', 'O')
+const player1 = Player('jeff', '❌')
+const player2 = Player('samantha', '⭕')
 
 game.start()
