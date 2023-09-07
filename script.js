@@ -3,11 +3,15 @@ const game = (function () {
   const formEl = document.querySelector('form')
   const playEl = document.querySelector('.play')
   const restarEl = document.querySelector('.restart')
+  restarEl.setAttribute('disabled', true)
+  restarEl.style.cursor = 'not-allowed'
 
   const handleSubmit = (e) => {
     e.preventDefault()
     start()
     playEl.style.display = 'none'
+    restarEl.addEventListener('click', replay)
+    restarEl.style.cursor = 'pointer'
   }
 
   const start = () => gameboard.activate()
@@ -19,7 +23,6 @@ const game = (function () {
   }
 
   formEl.addEventListener('submit', handleSubmit)
-  restarEl.addEventListener('click', replay)
 
   return { start, end, replay }
 })()
