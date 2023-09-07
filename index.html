@@ -9,7 +9,7 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <form action="">
+    <form>
       <div class="form-control">
         <label for="X">❌</label>
         <input
@@ -19,15 +19,27 @@
           name="X"
           maxlength="15"
           autofocus
+          required
         />
       </div>
       <div class="form-control">
         <label for="O">⭕</label>
-        <input type="text" id="O" placeholder="name" name="O" maxlength="15" />
+        <input
+          type="text"
+          id="O"
+          placeholder="name"
+          name="O"
+          maxlength="15"
+          required
+        />
       </div>
       <div class="buttons">
-        <img src="./assets/play.svg" alt="play" class="play" />
-        <img src="./assets/restart.svg" alt="restart" class="restart" />
+        <button type="submit">
+          <img src="./assets/play.svg" alt="play" class="play" />
+        </button>
+        <button type="button">
+          <img src="./assets/restart.svg" alt="restart" class="restart" />
+        </button>
       </div>
     </form>
 

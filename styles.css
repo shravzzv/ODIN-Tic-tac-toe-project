@@ -95,7 +95,7 @@ input {
   border: none;
   outline: none;
   font-size: 1.2rem;
-  padding: 0.25em 0.25em;
+  padding: 0.25em;
   background-color: var(--bg-clr-sec);
   color: var(--txt-clr-prm);
 }
@@ -103,16 +103,25 @@ input {
 .buttons {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+button {
+  border: none;
+  background-color: var(--bg-clr-sec);
 }
 
 .play,
 .restart {
   width: 50px;
   cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
 }
 
-.restart {
-  display: none;
+.play:hover,
+.restart:hover {
+  transform: scale(1.1);
 }
 
 @media (prefers-color-scheme: dark) {

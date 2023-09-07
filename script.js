@@ -1,14 +1,25 @@
 // module
 const game = (function () {
+  const formEl = document.querySelector('form')
+  const playEl = document.querySelector('.play')
   const restarEl = document.querySelector('.restart')
-  restarEl.addEventListener('click', (e) => replay())
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    start()
+    playEl.style.display = 'none'
+  }
 
   const start = () => gameboard.activate()
   const end = () => gameboard.deactivate()
+
   const replay = () => {
     gameboard.reset()
     start()
   }
+
+  formEl.addEventListener('submit', handleSubmit)
+  restarEl.addEventListener('click', replay)
 
   return { start, end, replay }
 })()
@@ -133,5 +144,3 @@ const Player = (name, choice) => {
 
 const player1 = Player('jeff', '❌')
 const player2 = Player('samantha', '⭕')
-
-game.start()
