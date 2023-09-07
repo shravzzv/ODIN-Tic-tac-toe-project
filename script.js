@@ -1,11 +1,5 @@
 // module
 const game = (function () {
-  // const startEl = document.querySelector('.start-game')
-  // const pauseEl = document.querySelector('.pause-game')
-  // const resetEl = document.querySelector('.reset-game')
-  // const form = document.querySelector('form')
-  // form.addEventListener('submit', (e) => e.preventDefault())
-
   const start = () => gameboard.activate()
   const end = () => gameboard.deactivate()
   const replay = () => {
@@ -14,10 +8,6 @@ const game = (function () {
       start()
     }
   }
-
-  // startEl.addEventListener('click', start)
-  // pauseEl.addEventListener('click', end)
-  // resetEl.addEventListener('click', reset)
 
   return { start, end, replay }
 })()

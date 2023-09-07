@@ -64,49 +64,6 @@ body {
   border-bottom-right-radius: calc(1em / 3);
 }
 
-.controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1em;
-  margin-top: 0.5em;
-}
-
-.controls > button {
-  border-radius: 1.5em;
-  padding: 1em;
-  border: none;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  cursor: pointer;
-}
-
-.start-game {
-  background-color: rgb(86, 219, 86);
-}
-
-.pause-game {
-  background-color: rgb(245, 245, 69);
-}
-
-form {
-  margin: 2em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-
-input {
-  border-radius: 0.5em;
-  outline: none;
-  border: 1px solid #000;
-  padding: 0.25em;
-  font-size: 1.1rem;
-}
-input:focus {
-  border-color: blue;
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --txt-clr-prm: white;
