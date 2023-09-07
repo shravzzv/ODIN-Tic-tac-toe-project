@@ -71,14 +71,14 @@ const gameboard = (function GameBoard() {
   const _checkResult = () => {
     for (const combination of _winningCombinations) {
       const [a, b, c] = combination
-      if (_board[a] === 'X' && _board[b] === 'X' && _board[c] === 'X') {
+      if (_board[a] === '❌' && _board[b] === '❌' && _board[c] === '❌') {
         setTimeout(() => {
           alert('X won!')
           game.end()
         }, 100)
         return
       }
-      if (_board[a] === 'O' && _board[b] === 'O' && _board[c] === 'O') {
+      if (_board[a] === '⭕' && _board[b] === '⭕' && _board[c] === '⭕') {
         setTimeout(() => {
           alert('O won!')
           game.end()
@@ -113,7 +113,7 @@ const Player = (name, choice) => {
   return { getName, getChoice, makeMove }
 }
 
-const player1 = Player('jeff', 'X')
-const player2 = Player('samantha', 'O')
+const player1 = Player('jeff', '❌')
+const player2 = Player('samantha', '⭕')
 
 game.start()
