@@ -6,10 +6,8 @@ const game = (function () {
   const start = () => gameboard.activate()
   const end = () => gameboard.deactivate()
   const replay = () => {
-    if (window.confirm('Replay')) {
-      gameboard.reset()
-      start()
-    }
+    gameboard.reset()
+    start()
   }
 
   return { start, end, replay }
@@ -77,7 +75,6 @@ const gameboard = (function GameBoard() {
         setTimeout(() => {
           alert('X won!')
           game.end()
-          game.replay()
         }, 100)
         return
       }
@@ -85,7 +82,6 @@ const gameboard = (function GameBoard() {
         setTimeout(() => {
           alert('O won!')
           game.end()
-          game.replay()
         }, 100)
         return
       }
@@ -95,7 +91,6 @@ const gameboard = (function GameBoard() {
       setTimeout(() => {
         alert("It's a draw")
         game.end()
-        game.replay()
       }, 100)
     }
   }
