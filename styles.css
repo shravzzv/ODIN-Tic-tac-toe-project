@@ -5,10 +5,112 @@
 :root {
   --txt-clr-prm: black;
   --bg-clr-prm: white;
+  --bg-clr-sec: rgb(245, 245, 245);
 }
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
+  color: var(--txt-clr-prm);
+  background-color: var(--bg-clr-sec);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  background-color: var(--bg-clr-prm);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 1em;
+}
+
+.tile {
+  border: 1px solid #000;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.tile:focus,
+.tile:hover {
+  color: blue;
+  border-color: blue;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
+.tile:first-of-type {
+  border-top-left-radius: calc(1em / 3);
+}
+.tile:nth-of-type(3) {
+  border-top-right-radius: calc(1em / 3);
+}
+.tile:nth-of-type(7) {
+  border-bottom-left-radius: calc(1em / 3);
+}
+.tile:last-of-type {
+  border-bottom-right-radius: calc(1em / 3);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 0.5em;
+}
+
+.controls > button {
+  border-radius: 1.5em;
+  padding: 1em;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  cursor: pointer;
+}
+
+.start-game {
+  background-color: rgb(86, 219, 86);
+}
+
+.pause-game {
+  background-color: rgb(245, 245, 69);
+}
+
+form {
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+input {
+  border-radius: 0.5em;
+  outline: none;
+  border: 1px solid #000;
+  padding: 0.25em;
+  font-size: 1.1rem;
+}
+input:focus {
+  border-color: blue;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --txt-clr-prm: white;
+    --bg-clr-prm: #181a1b;
+    --bg-clr-sec: #010409;
+  }
 }
