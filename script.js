@@ -71,23 +71,29 @@ const gameboard = (function GameBoard() {
     for (const combination of _winningCombinations) {
       const [a, b, c] = combination
       if (_board[a] === 'X' && _board[b] === 'X' && _board[c] === 'X') {
-        console.log('X won!')
-        game.end()
-        game.replay()
+        setTimeout(() => {
+          alert('X won!')
+          game.end()
+          game.replay()
+        }, 100)
         return
       }
       if (_board[a] === 'O' && _board[b] === 'O' && _board[c] === 'O') {
-        console.log('O won!')
-        game.end()
-        game.replay()
+        setTimeout(() => {
+          alert('O won!')
+          game.end()
+          game.replay()
+        }, 100)
         return
       }
     }
 
     if (!_board.includes('')) {
-      console.log("It's a draw")
-      game.end()
-      game.replay()
+      setTimeout(() => {
+        alert("It's a draw")
+        game.end()
+        game.replay()
+      }, 100)
     }
   }
 
