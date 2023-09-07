@@ -16,6 +16,8 @@ const game = (function () {
 // module
 const gameboard = (function GameBoard() {
   const _tileElsArr = Array.from(document.querySelectorAll('.tile'))
+  const _player = document.querySelector('.player')
+  _player.textContent = '❌'
   const _board = ['', '', '', '', '', '', '', '', '']
   let _invertTurn = false
   const _winningCombinations = [
@@ -34,9 +36,13 @@ const gameboard = (function GameBoard() {
 
   const _handleTileClick = (e) => {
     if (e.currentTarget.textContent !== '') return
-    _invertTurn
-      ? player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
-      : player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
+    if (_invertTurn) {
+      player2.makeMove(_tileElsArr.indexOf(e.currentTarget))
+      _player.textContent = '❌'
+    } else {
+      player1.makeMove(_tileElsArr.indexOf(e.currentTarget))
+      _player.textContent = '⭕'
+    }
     _invertTurn = !_invertTurn
     _checkResult()
   }
@@ -66,6 +72,7 @@ const gameboard = (function GameBoard() {
     _board.splice(0, 9, '', '', '', '', '', '', '', '', '')
     _populate()
     _invertTurn = false
+    _player.textContent = '❌'
   }
 
   const _checkResult = () => {
