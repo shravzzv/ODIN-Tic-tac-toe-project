@@ -8,6 +8,10 @@
   --bg-clr-sec: rgb(245, 245, 245);
 }
 
+img {
+  max-width: 100%;
+}
+
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -15,6 +19,13 @@ body {
   color: var(--txt-clr-prm);
   background-color: var(--bg-clr-sec);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.game {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,10 +56,8 @@ body {
 
 .tile:focus,
 .tile:hover {
-  color: blue;
-  border-color: blue;
-  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  box-shadow: rgb(209, 208, 208) 3px 3px 6px 0px inset,
+    rgb(209, 208, 208) -3px -3px 6px 1px inset;
 }
 
 .tile:first-of-type {
@@ -64,18 +73,53 @@ body {
   border-bottom-right-radius: calc(1em / 3);
 }
 
-.restart {
-  margin-top: 1em;
-  border-radius: 1em;
-  border: 1px solid black;
-  font-size: 2rem;
-  padding: 0.25em 1em;
-  cursor: pointer;
+/* form control resets */
+button,
+input {
+  font-family: inherit;
+  font-size: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.restart:focus,
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+input {
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  padding: 0.25em;
+  background-color: var(--bg-clr-sec);
+  color: var(--txt-clr-prm);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  border: none;
+  background-color: var(--bg-clr-sec);
+}
+
+.play,
+.restart {
+  width: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.play:hover,
 .restart:hover {
-  border-color: blue;
+  transform: scale(1.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,5 +127,11 @@ body {
     --txt-clr-prm: white;
     --bg-clr-prm: #181a1b;
     --bg-clr-sec: #010409;
+  }
+
+  .tile:focus,
+  .tile:hover {
+    box-shadow: rgb(69, 69, 70) 3px 3px 6px 0px inset,
+      rgb(70, 70, 70) -3px -3px 6px 1px inset;
   }
 }

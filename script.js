@@ -1,14 +1,28 @@
 // module
 const game = (function () {
+  const formEl = document.querySelector('form')
+  const playEl = document.querySelector('.play')
   const restarEl = document.querySelector('.restart')
-  restarEl.addEventListener('click', (e) => replay())
+  restarEl.setAttribute('disabled', true)
+  restarEl.style.cursor = 'not-allowed'
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    start()
+    playEl.style.display = 'none'
+    restarEl.addEventListener('click', replay)
+    restarEl.style.cursor = 'pointer'
+  }
 
   const start = () => gameboard.activate()
   const end = () => gameboard.deactivate()
+
   const replay = () => {
     gameboard.reset()
     start()
   }
+
+  formEl.addEventListener('submit', handleSubmit)
 
   return { start, end, replay }
 })()
@@ -133,5 +147,3 @@ const Player = (name, choice) => {
 
 const player1 = Player('jeff', '❌')
 const player2 = Player('samantha', '⭕')
-
-game.start()

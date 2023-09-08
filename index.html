@@ -9,19 +9,54 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h2 class="turn"><span class="player"></span>'s turn</h2>
-    <h1 class="result"></h1>
-    <div class="gameBoard">
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
-      <div class="tile"></div>
+    <form>
+      <div class="form-control">
+        <label for="X">❌</label>
+        <input
+          type="text"
+          id="X"
+          placeholder="name"
+          name="X"
+          maxlength="15"
+          autofocus
+          required
+        />
+      </div>
+      <div class="form-control">
+        <label for="O">⭕</label>
+        <input
+          type="text"
+          id="O"
+          placeholder="name"
+          name="O"
+          maxlength="15"
+          required
+        />
+      </div>
+      <div class="buttons">
+        <button type="submit">
+          <img src="./assets/play.svg" alt="play" class="play" />
+        </button>
+        <button type="button">
+          <img src="./assets/restart.svg" alt="restart" class="restart" />
+        </button>
+      </div>
+    </form>
+
+    <div class="game">
+      <div class="gameBoard">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+      </div>
+      <h2 class="turn"><span class="player"></span>'s turn</h2>
+      <h1 class="result"></h1>
     </div>
-    <button class="restart">Restart</button>
   </body>
 </html>
