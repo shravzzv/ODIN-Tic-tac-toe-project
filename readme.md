@@ -10,7 +10,15 @@ It's part of [The Odin Project][project-url] and was completed as a segment of t
 
 ## Features
 
-- **Feature 1**: Feature short description.
+- **Player vs. Player Mode**: Enjoy a classic game of Tic Tac Toe with a friend. Two players can take turns to make their moves on the game board.
+
+- **Responsive Design**: The game is designed to work smoothly on both desktop and mobile devices, ensuring a seamless gaming experience across various screen sizes.
+
+- **Winning Logic**: Implement a robust winning logic system that detects when a player has won the game by aligning three of their marks either horizontally, vertically, or diagonally.
+
+- **Game Reset**: Provide a convenient option to reset the game board and start a new match, allowing players to continue playing without the need to refresh the page.
+
+- **Game State Management**: Implement a module-based approach to manage the game state, making it easy to add features or enhancements in the future.
 
 ## Installation
 
@@ -40,7 +48,7 @@ The project is licensed under the [MIT license][Licence-url].
 
 <!-- links -->
 
-[pic-url-1]: https://res.cloudinary.com/dmt9s5xlh/image/upload/v1693814960/INBOX/ODIN-lib-home_y6oxtk.jpg
+[pic-url-1]: https://res.cloudinary.com/dmt9s5xlh/image/upload/v1694150834/tic-tac-toe_qcr59a.jpg
 [deployment-url]: https://shravzzv.github.io/ODIN-Tic-tac-toe-project/
 [project-url]: https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
 [course-url]: https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript
